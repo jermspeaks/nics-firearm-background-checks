@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "seed": "mongoimport --db states --collection firearms --type json --file ./src/data/nics-firearm-background-checks.json --jsonArray"
+    "seed": "mongoimport --db states --collection firearms --type json --file ./data/nics-firearm-background-checks.json --jsonArray"
   },
   "repository": {
     "type": "git",

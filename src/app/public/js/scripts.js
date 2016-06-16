@@ -3,10 +3,17 @@ const initialize = () => {
 }
 
 const changeEventHandler = event => {
-  // console.log('You like ' + event.target.value + ' ice cream.');
-
   fetchStateData(event.target.value);
 }
+
+const formatDate = d3.time.format("%Y-%m");
+
+const type = d => {
+  d.month = formatDate.parse(d.month);
+  d.handgun = +d.handgun;
+  return d;
+};
+
 
 const fetchStateData = state => {
   let data;
@@ -14,11 +21,13 @@ const fetchStateData = state => {
     .then(res => res.json())
     .then(response => {
       data = response.map(point => {
+        point = type(point);
         return {
           month: point.month,
-          handgun: point.handgun
+          handgun: +point.handgun
         };
       });
+      data = data.sort((a, b) => a.month - b.month);
       clearChart();
       generateGraph(data);
     })
@@ -29,8 +38,6 @@ const generateGraph = data => {
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
-
-  var formatDate = d3.time.format("%Y-%m");
 
   var x = d3.time.scale()
       .range([0, width]);
@@ -57,9 +64,10 @@ const generateGraph = data => {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  data.forEach(datum => {
-    datum = type(datum);
-  });
+  // data.forEach(datum => {
+  //   datum = type(datum);
+  //   // console.log(datum.month);
+  // });
 
   x.domain(d3.extent(data, function(d) { return d.month; }));
   y.domain(d3.extent(data, function(d) { return d.handgun; }));
@@ -82,12 +90,6 @@ const generateGraph = data => {
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .text("Handguns");
-
-  function type(d) {
-    d.month = formatDate.parse(d.month);
-    d.handgun = +d.handgun;
-    return d;
-  }
 }
 
 const clearChart = () => {
