@@ -1,0 +1,25 @@
+{
+  "name": "nics-firearm-background-checks-data-viz",
+  "version": "0.1.0",
+  "description": "Data visualization of the FBI's National Instant Criminal Background Check System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jermspeaks/nics-firearm-background-checks.git"
+  },
+  "keywords": [
+    "data",
+    "vis",
+    "firearm",
+    "FBI"
+  ],
+  "author": "Jeremy Wong (jermspeaks@gmail.com)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jermspeaks/nics-firearm-background-checks/issues"
+  },
+  "homepage": "https://github.com/jermspeaks/nics-firearm-background-checks#readme"
+}
